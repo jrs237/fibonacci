@@ -47,10 +47,19 @@ class FibonacciTable {
    * @return the Fibonacci number for this index
    */
   int fib(int i) {
-    // use the provided cache to reuse computed values
-    // cache.containsKey(4) will return true if there is a value stored for the index 4
-    // cache.get(4) will return the stored value for 4
-    // cache.put(4,3) will store the value 3 for the index 4 in the cache
-    throw new UnsupportedOperationException();
+    if (i < 0)
+      throw new IllegalArgumentException();
+
+    if (cache.containsKey(i))
+      return cache.get(i);
+
+    int result;
+    if (i <= 2)
+      result = 1;
+    else
+      result = fib(i - 1) + fib(i - 2);
+
+    cache.put(i, result);
+    return result;
   }
 }
