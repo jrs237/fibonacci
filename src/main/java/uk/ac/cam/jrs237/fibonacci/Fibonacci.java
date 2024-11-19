@@ -26,6 +26,12 @@ class Fibonacci {
    * @return the Fibonacci number for this index
    */
   int fib(int i) {
-    throw new UnsupportedOperationException();
+    if (i < 0)
+      throw new IllegalArgumentException();
+
+    if (i <= 2)
+      return 1;
+
+    return fib(i - 2) + fib(i - 1);
   }
 }
