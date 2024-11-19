@@ -17,6 +17,7 @@
 package uk.ac.cam.jrs237.fibonacci;
 
 import static com.google.common.truth.Truth.assertThat;
+import static org.junit.Assert.assertThrows;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -24,6 +25,12 @@ import org.junit.runners.JUnit4;
 
 @RunWith(JUnit4.class)
 public class FibonacciTableTest {
+  @Test
+  public void fib_throwsIllegalArgumentException_atMinus1() {
+    FibonacciTable fibonacciTable = new FibonacciTable();
+
+    assertThrows(IllegalArgumentException.class, () -> fibonacciTable.fib(-1));
+  }
 
   @Test
   public void fib_makesUseOfCache() {
