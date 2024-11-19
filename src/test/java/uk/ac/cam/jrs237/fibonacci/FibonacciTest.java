@@ -32,10 +32,14 @@ public class FibonacciTest {
     Fibonacci fibonacci = new Fibonacci();
 
     // ACT
-    int result = fibonacci.fib(1);
+    int result_first = fibonacci.fib(1);
+    int result_fifth = fibonacci.fib(5);
+    int result_tenth = fibonacci.fib(10);
 
     // ASSERT
-    assertThat(result).isEqualTo(1);
+    assertThat(result_first).isEqualTo(1);
+    assertThat(result_fifth).isEqualTo(5);
+    assertThat(result_tenth).isEqualTo(55);
   }
 
   @Test
