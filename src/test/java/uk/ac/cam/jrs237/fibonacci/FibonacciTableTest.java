@@ -16,6 +16,8 @@
 
 package uk.ac.cam.jrs237.fibonacci;
 
+import static com.google.common.truth.Truth.assertThat;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.JUnit4;
@@ -25,6 +27,21 @@ public class FibonacciTableTest {
 
   @Test
   public void fib_makesUseOfCache() {
-    // Hint: use CountingMap!
+    CountingMap countingMap = new CountingMap();
+    FibonacciTable fibonacci = new FibonacciTable(countingMap);
+
+    int resultFirst = fibonacci.fib(1);
+    int cacheCallsFirst = countingMap.getCounter();
+    int resultFifth = fibonacci.fib(5);
+    int cacheCallsFifth = countingMap.getCounter() - cacheCallsFirst;
+    int resultTenth = fibonacci.fib(10);
+    int cacheCallsTenth = countingMap.getCounter() - cacheCallsFifth;
+
+    assertThat(resultFirst).isEqualTo(1);
+    assertThat(cacheCallsFirst).isEqualTo(0);
+    assertThat(resultFifth).isEqualTo(5);
+    assertThat(cacheCallsFifth).isEqualTo(3);
+    assertThat(resultTenth).isEqualTo(55);
+    assertThat(cacheCallsTenth).isEqualTo(6);
   }
 }
